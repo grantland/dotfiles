@@ -1,0 +1,11 @@
+[user]
+	name = Grantland Chew
+	email = grantlandchew@gmail.com
+[github]
+	user = grantland
+[core]
+	excludesfile = /Users/grantland/.gitignore_global
+[alias]
+	prettylog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[color]
+	ui = true
