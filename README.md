@@ -5,6 +5,7 @@ These are my personal config files.
 ## Config files
 
 * ```.bash_profile```
+* ```.inputrc```
 * ```.gitconfig```
 * ```.gitignore_global```
 
