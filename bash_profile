@@ -1,10 +1,3 @@
-# Memcached
-memcached -d -m 24 -p 11211
-echo "memcached started..."
-
-# XAMPP mysql.sock
-# ln -s /Applications/XAMPP/xamppfiles/var/mysql/mysql.sock /tmp/mysql.sock
-
 ##==============================================================================
 # Aliases
 ##==============================================================================
