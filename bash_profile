@@ -1,9 +1,16 @@
+##
+# Settings
+##
+
+# Append to .bash_history instead of replacing it
+shopt -s histappend
+
 ##==============================================================================
 # Aliases
 ##==============================================================================
 
 # Eclipse Alias
-alias eclipse='/Developer/Applications/eclipse/eclipse';
+alias eclipse='/Applications/Eclipse/Eclipse';
 
 # Git Prettylog
 git() { if [[ $@ == "log" ]]; then command git prettylog; else command git "$@"; fi; }
@@ -65,18 +72,21 @@ PS1='\[\e[1;34m\]\w\[\e[22;35m\]$(__git_ps1 " [\[\e[33m\]$(__git_status_flag)\[\
 # Variables
 ##==============================================================================
 
+export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
+
 # Scripts
 export PATH=${PATH}:~/bin
+export PATH=${PATH}:~/bin/dex2jar
 
 # Android SDK
-export PATH=${PATH}:/Developer/android-sdk/tools
-export PATH=${PATH}:/Developer/android-sdk/platform-tools
+export PATH=${PATH}:/usr/local/android-sdk/tools
+export PATH=${PATH}:/usr/local/android-sdk/platform-tools
 
 # Android NDK
-export PATH=${PATH}:/Developer/android-ndk
+#export PATH=${PATH}:/Developer/android-ndk
 
 # Proguard
-export PATH=${PATH}:/Developer/android-sdk/tools/proguard/lib
+export PATH=${PATH}:/usr/local/android-sdk/tools/proguard/lib
 
 # Terminal Colors
 export CLICOLOR=1
