@@ -9,9 +9,6 @@ shopt -s histappend
 # Aliases
 ##==============================================================================
 
-# Eclipse Alias
-alias eclipse='/Applications/Eclipse/Eclipse';
-
 # Git Prettylog
 git() { if [[ $@ == "log" ]]; then command git prettylog; else command git "$@"; fi; }
 
@@ -76,17 +73,21 @@ export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
 
 # Scripts
 export PATH=${PATH}:~/bin
-export PATH=${PATH}:~/bin/dex2jar
 
 # Android SDK
-export PATH=${PATH}:/usr/local/android-sdk/tools
-export PATH=${PATH}:/usr/local/android-sdk/platform-tools
+export ANDROID_PATH=~/Development/android-sdk
+export PATH=${PATH}:${ANDROID_PATH}/tools
+export PATH=${PATH}:${ANDROID_PATH}/platform-tools
 
 # Android NDK
 #export PATH=${PATH}:/Developer/android-ndk
 
 # Proguard
-export PATH=${PATH}:/usr/local/android-sdk/tools/proguard/lib
+export PATH=${PATH}:${ANDROID_PATH}/tools/proguard/lib
+
+# Android Scripts
+export PATH=${PATH}:~/bin/dex2jar-0.0.9.12
+export PATH=${PATH}:~/bin/apktool1.5.0
 
 # Terminal Colors
 export CLICOLOR=1
