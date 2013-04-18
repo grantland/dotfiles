@@ -86,8 +86,8 @@ export PATH=${PATH}:${ANDROID_PATH}/platform-tools
 export PATH=${PATH}:${ANDROID_PATH}/tools/proguard/lib
 
 # Android Scripts
-export PATH=${PATH}:~/bin/dex2jar-0.0.9.12
-export PATH=${PATH}:~/bin/apktool1.5.0
+export PATH=${PATH}:~/bin/dex2jar-0.0.9.13
+export PATH=${PATH}:~/bin/apktool1.5.2
 
 # Terminal Colors
 export CLICOLOR=1
