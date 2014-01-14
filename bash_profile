@@ -73,6 +73,8 @@ fi
 # Variables
 ##==============================================================================
 
+export EDITOR=vim
+
 export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
 
 # Scripts
@@ -91,9 +93,14 @@ export PATH=${PATH}:${ANDROID_SDK}/platform-tools
 export PATH=${PATH}:${ANDROID_PATH}/tools/proguard/lib
 
 # Android Scripts
-export PATH=${PATH}:~/bin/dex2jar-0.0.9.13
+export PATH=${PATH}:~/bin/dex2jar-0.0.9.15
 export PATH=${PATH}:~/bin/apktool1.5.2
+
+# FB
+export PATH=${PATH}:~/src/devtools/arcanist/bin
 
 # Terminal Colors
 export CLICOLOR=1
 # export LSCOLORS="GxFxCxDxBxegedabagacad"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
