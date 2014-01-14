@@ -33,8 +33,8 @@ cd_stt() {
 alias cd='cd_stt'
 
 # Brew git Bash shell command completion
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
 fi
 
 # GIT status flag
@@ -63,7 +63,11 @@ function __git_status_flag {
 
     echo "${state}${remote}${spacer}"
 }
-PS1='\[\e[1;34m\]\w\[\e[22;35m\]$(__git_ps1 " [\[\e[33m\]$(__git_status_flag)\[\e[35m\]%s]")\[\e[33m\] \$ \[\e[0m\]'
+
+if [ -f ~/.git-prompt.sh ]; then
+    source ~/.git-prompt.sh
+    export PS1='\[\e[1;34m\]\w\[\e[22;35m\]$(__git_ps1 " [\[\e[33m\]$(__git_status_flag)\[\e[35m\]%s]")\[\e[33m\] \$ \[\e[0m\]'
+fi
 
 ##==============================================================================
 # Variables
