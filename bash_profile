@@ -75,9 +75,10 @@ export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
 export PATH=${PATH}:~/bin
 
 # Android SDK
-export ANDROID_PATH=~/Development/android-sdk
-export PATH=${PATH}:${ANDROID_PATH}/tools
-export PATH=${PATH}:${ANDROID_PATH}/platform-tools
+export ANDROID_SDK='/Applications/Android Studio.app/sdk'
+export PATH=${PATH}:${ANDROID_SDK}/tools
+export PATH=${PATH}:${ANDROID_SDK}/tools/proguard/bin
+export PATH=${PATH}:${ANDROID_SDK}/platform-tools
 
 # Android NDK
 #export PATH=${PATH}:/Developer/android-ndk
