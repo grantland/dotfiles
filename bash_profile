@@ -81,13 +81,10 @@ export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
 export PATH=${PATH}:~/bin
 
 # Android SDK
-export ANDROID_SDK='/Applications/Android Studio.app/sdk'
-export PATH=${PATH}:${ANDROID_SDK}/tools
-export PATH=${PATH}:${ANDROID_SDK}/tools/proguard/bin
-export PATH=${PATH}:${ANDROID_SDK}/platform-tools
-
-# Android NDK
-#export PATH=${PATH}:/Developer/android-ndk
+export ANDROID_HOME=/usr/local/opt/android-sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/tools/proguard/bin
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 # Proguard
 export PATH=${PATH}:${ANDROID_PATH}/tools/proguard/lib
@@ -96,8 +93,10 @@ export PATH=${PATH}:${ANDROID_PATH}/tools/proguard/lib
 export PATH=${PATH}:~/bin/dex2jar-0.0.9.15
 export PATH=${PATH}:~/bin/apktool1.5.2
 
-# FB
-export PATH=${PATH}:~/src/devtools/arcanist/bin
+# Parse
+export GOPATH=/Users/grantland/Development/hungrylabs/hungry/go
+export PATH=${PATH}:~/Development/arcanist/arcanist/bin
+export PATH=${PATH}:$GOPATH/bin
 
 # Terminal Colors
 export CLICOLOR=1
