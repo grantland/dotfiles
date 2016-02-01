@@ -95,7 +95,7 @@ export PATH=${PATH}:~/bin/apktool1.5.2
 
 # Parse
 export GOPATH=/Users/grantland/Development/hungrylabs/hungry/go
-export PATH=${PATH}:~/Development/arcanist/arcanist/bin
+export PATH=~/Development/arcanist/arcanist/bin:${PATH}
 export PATH=${PATH}:$GOPATH/bin
 
 # Terminal Colors
