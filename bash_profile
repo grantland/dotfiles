@@ -69,6 +69,15 @@ if [ -f ~/.git-prompt.sh ]; then
     export PS1='\[\e[1;34m\]\w\[\e[22;35m\]$(__git_ps1 " [\[\e[33m\]$(__git_status_flag)\[\e[35m\]%s]")\[\e[33m\] \$ \[\e[0m\]'
 fi
 
+if [ -f /opt/facebook/share/bash_completion ]; then
+    source /opt/facebook/share/bash_completion
+fi
+
+if [ -f /opt/facebook/share/scm-prompt ]; then
+  source /opt/facebook/share/scm-prompt
+  export PS1='\[\e[1;34m\]\w\[\e[22;35m\]$(_dotfiles_scm_info)\[\e[33m\] \$ \[\e[0m\]'
+fi
+
 ##==============================================================================
 # Variables
 ##==============================================================================
@@ -86,6 +95,9 @@ export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/tools/proguard/bin
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
+# Android NDK
+export ANDROID_NDK=/opt/android_ndk/android-ndk-r10e
+
 # Proguard
 export PATH=${PATH}:${ANDROID_PATH}/tools/proguard/lib
 
@@ -98,8 +110,9 @@ export GOPATH=/Users/grantland/Development/hungrylabs/hungry/go
 export PATH=~/Development/arcanist/arcanist/bin:${PATH}
 export PATH=${PATH}:$GOPATH/bin
 
+# Facebook
+export PATH=${PATH}:~/buck/bin
+
 # Terminal Colors
 export CLICOLOR=1
 # export LSCOLORS="GxFxCxDxBxegedabagacad"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
