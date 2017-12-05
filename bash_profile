@@ -96,7 +96,8 @@ export PATH=${PATH}:${ANDROID_HOME}/tools/proguard/bin
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 # Android NDK
-export ANDROID_NDK=/opt/android_ndk/android-ndk-r10e
+export ANDROID_NDK=/opt/android_ndk/android-ndk-r12b
+export ANDROID_NDK_REPOSITORY=/opt/android_ndk
 
 # Proguard
 export PATH=${PATH}:${ANDROID_PATH}/tools/proguard/lib
@@ -116,3 +117,10 @@ export PATH=${PATH}:~/buck/bin
 # Terminal Colors
 export CLICOLOR=1
 # export LSCOLORS="GxFxCxDxBxegedabagacad"
+
+# BEGIN: Block added by chef, to set environment strings
+# Please see https://fburl.com/AndroidProvisioning if you do not use bash
+# or if you would rather this bit of code 'live' somewhere else
+. ~/.fbchef/environment
+# END: Block added by chef
+
