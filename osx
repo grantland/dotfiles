@@ -31,10 +31,8 @@ defaults write enable-spring-load-actions-on-all-items -bool true
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Set key repeat to "insanely fast"
-defaults write NSGlobalDomain KeyRepeat -int 0
-
-# Set initial key repeat to "insanely fast"
-defaults write NSGlobalDomain InitialKeyRepeat -int 4
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
@@ -96,3 +94,11 @@ for app in Safari Finder Dock Mail; do killall "$app"; done
 # See https://github.com/mathiasbynens/dotfiles/issues/237
 #echo "0x08000100:0" > ~/.CFUserTextEncoding
 
+###############################################################################
+# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
+###############################################################################
+
+# Trackpad: enable tap to click for this user and for the login screen
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
