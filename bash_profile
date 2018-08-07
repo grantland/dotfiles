@@ -91,6 +91,7 @@ export PATH=${PATH}:~/bin
 
 # Android SDK
 export ANDROID_HOME=/usr/local/opt/android-sdk
+export PATH=${PATH}:${ANDROID_HOME}/emulator
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/tools/proguard/bin
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
