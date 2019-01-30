@@ -97,7 +97,7 @@ export PATH=${PATH}:${ANDROID_HOME}/tools/proguard/bin
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 # Android NDK
-export ANDROID_NDK=/opt/android_ndk/android-ndk-r12b
+export ANDROID_NDK=/opt/android_ndk/android-ndk-r15fb1
 export ANDROID_NDK_REPOSITORY=/opt/android_ndk
 
 # Proguard
