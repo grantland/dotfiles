@@ -9,6 +9,8 @@ shopt -s histappend
 # Aliases
 ##==============================================================================
 
+alias diff="diff -wbBdu"
+
 # Git Prettylog
 git() { if [[ $@ == "log" ]]; then command git prettylog; else command git "$@"; fi; }
 
