@@ -102,3 +102,6 @@ for app in Safari Finder Dock Mail; do killall "$app"; done
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# Bluetooth: enable AAC codec instead of SBC
+defaults write bluetoothaudiod "Enable AAC codec" -bool true
