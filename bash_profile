@@ -66,9 +66,15 @@ function __git_status_flag {
     echo "${state}${remote}${spacer}"
 }
 
-if [ -f ~/.git-prompt.sh ]; then
-    source ~/.git-prompt.sh
+# From github.com/git/git
+if [ -f ~/bin/git-prompt.sh ]; then
+    source ~/bin/git-prompt.sh
     export PS1='\[\e[1;34m\]\w\[\e[22;35m\]$(__git_ps1 " [\[\e[33m\]$(__git_status_flag)\[\e[35m\]%s]")\[\e[33m\] \$ \[\e[0m\]'
+fi
+
+# From github.com/git/git
+if [ -f ~/bin/git-completion.bash ]; then
+    source ~/bin/git-completion.bash
 fi
 
 if [ -f /opt/facebook/share/bash_completion ]; then
@@ -109,13 +115,11 @@ export PATH=${PATH}:${ANDROID_PATH}/tools/proguard/lib
 export PATH=${PATH}:~/bin/dex2jar-0.0.9.15
 export PATH=${PATH}:~/bin/apktool1.5.2
 
-# Parse
-export GOPATH=/Users/grantland/Development/hungrylabs/hungry/go
-export PATH=~/Development/arcanist/arcanist/bin:${PATH}
-export PATH=${PATH}:$GOPATH/bin
-
 # Facebook
 export PATH=${PATH}:~/buck/bin
+
+# Cisco
+export PATH=${PATH}:/opt/cisco/anyconnect/bin
 
 # Terminal Colors
 export CLICOLOR=1
