@@ -92,10 +92,16 @@ fi
 
 export EDITOR=vim
 
+# Hide the “default interactive shell is now zsh” warning on macOS.
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
 
 # Scripts
 export PATH=${PATH}:~/bin
+
+# Sublime
+export PATH="${PATH}:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 
 # Android SDK
 export ANDROID_HOME=/usr/local/opt/android-sdk

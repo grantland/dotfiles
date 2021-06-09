@@ -6,8 +6,23 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # Enable the 2D Dock
 #defaults write com.apple.dock no-glass -bool true
 
+echo "Automatically hide and show the Dock"
+defaults write com.apple.dock autohide -bool true
+
 # Make Dock icons of hidden applications translucent
-defaults write com.apple.Dock showhidden -bool true
+defaults write com.apple.dock showhidden -bool true
+
+# Don’t show recent applications in Dock
+defaults write com.apple.dock show-recents -bool false
+
+# Enable highlight hover effect for the grid view of a stack (Dock)
+defaults write com.apple.dock mouse-over-hilte-stack -bool true
+
+# Set orientation of dock to left
+defaults.write.com.apple.dock orientation -string left
+
+# Disable automatically rearrange Spaces based on recent use
+defaults write com.apple.dock mru-spaces -bool false
 
 # Disable menu bar transparency
 #defaults write -g AppleEnableMenuBarTransparency -bool false
@@ -21,9 +36,6 @@ defaults write -g PMPrintingExpandedStateForPrint -bool true
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
 
-# Enable highlight hover effect for the grid view of a stack (Dock)
-defaults write com.apple.dock mouse-over-hilte-stack -bool true
-
 # Enable spring loading for all Dock items
 defaults write enable-spring-load-actions-on-all-items -bool true
 
@@ -31,8 +43,8 @@ defaults write enable-spring-load-actions-on-all-items -bool true
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Set key repeat to "insanely fast"
-defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
