@@ -6,6 +6,7 @@
 [core]
 	excludesfile = /Users/grantland/.gitignore_global
 	precomposeunicode = true
+	editor = vim
 [alias]
 	prettylog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
 	sl = smartlog
