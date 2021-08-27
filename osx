@@ -19,7 +19,7 @@ defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock mouse-over-hilte-stack -bool true
 
 # Set orientation of dock to left
-defaults.write.com.apple.dock orientation -string left
+defaults write com.apple.dock orientation -string left
 
 # Disable automatically rearrange Spaces based on recent use
 defaults write com.apple.dock mru-spaces -bool false
