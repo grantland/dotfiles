@@ -13,6 +13,7 @@ brew install bash
 brew install bash-completion2
 
 # Install some apps
+brew install --cask alfred
 brew install rectangle
 brew install --cask dozer
 brew install --cask monitorcontrol
