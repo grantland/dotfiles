@@ -23,5 +23,7 @@ brew install --cask sublime-text
 brew install --cask discord
 brew install mas
 brew install scrcpy
+brew install --cask vysor
 brew install --cask syncthing
 brew install --cask qlvideo
+brew install ncdu
