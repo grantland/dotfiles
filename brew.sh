@@ -18,7 +18,8 @@ brew install --cask alfred
 brew install rectangle
 brew install --cask dozer
 brew install --cask monitorcontrol
-brew install unclack
+#brew install unclack
+brew install --cask krisp
 brew install --cask sublime-text
 brew install --cask discord
 brew install mas
