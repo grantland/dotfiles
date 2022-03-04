@@ -28,3 +28,5 @@ brew install --cask vysor
 brew install --cask syncthing
 brew install --cask qlvideo
 brew install ncdu
+brew install --cask ultimaker-cura
+brew install openscad
