@@ -43,4 +43,5 @@ brew install openscad
 
 brew install --cask qlvideo
 brew install ncdu
+brew install --cask calibre
 
