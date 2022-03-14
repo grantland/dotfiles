@@ -1,0 +1,6 @@
+[submodule "bin/git"]
+	path = bin/git
+	url = https://github.com/git/git.git
+[submodule "bin/git-smartlog"]
+	path = bin/git-smartlog
+	url = https://github.com/reydanro/git-smartlog.git
