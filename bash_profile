@@ -104,7 +104,10 @@ export PATH=${PATH}:~/bin
 export PATH="${PATH}:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 
 # Android SDK
-export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_HOME=~/Library/Android/sdk
+if [ ! -d ${ANDROID_HOME} ]; then
+  export ANDROID_HOME=/usr/local/opt/android-sdk
+fi
 export PATH=${PATH}:${ANDROID_HOME}/emulator
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/tools/proguard/bin
