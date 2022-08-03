@@ -39,37 +39,15 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 
-# GIT status flag
-function __git_status_flag {
-    git_status="$(git status 2> /dev/null)"
-    remote_pattern="^# Your branch is (. of"
-    diverge_pattern="# Your branch and (. have diverged"
-    if [[ ! ${git_status}} =~ "working directory clean" ]]; then
-        state="⚡"
-        spacer=" "
-    fi
+# From github.com/magicmonty/bash-git-prompt
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+    __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
 
-    if [[ ${git_status} =~ ${remote_pattern} ]]; then
-        spacer=" "
-        if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
-            remote="↑"
-        else
-            remote="↓"
-        fi
-    fi
+    # Customizations
+    GIT_PROMPT_START='\[\e[1;34m\]\w\[\e[22;35m\]'
+    GIT_PROMPT_END='\[\e[33m\] \$ \[\e[0m\]'
 
-    if [[ ${git_status} =~ ${diverge_pattern} ]]; then
-        remote="↕"
-        spacer=" "
-    fi
-
-    echo "${state}${remote}${spacer}"
-}
-
-# From github.com/git/git
-if [ -f ~/bin/git-prompt.sh ]; then
-    source ~/bin/git-prompt.sh
-    export PS1='\[\e[1;34m\]\w\[\e[22;35m\]$(__git_ps1 " [\[\e[33m\]$(__git_status_flag)\[\e[35m\]%s]")\[\e[33m\] \$ \[\e[0m\]'
+    source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
 # From github.com/git/git

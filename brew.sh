@@ -11,6 +11,7 @@ brew upgrade
 # Install a modern version of Bash.
 brew install bash
 brew install bash-completion2
+brew install bash-git-prompt
 
 # Install some apps
 brew install mas
