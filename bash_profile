@@ -73,10 +73,14 @@ export EDITOR=vim
 # Hide the “default interactive shell is now zsh” warning on macOS.
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
+export PATH=/usr/local/bin:$PATH:/usr/local/sbin
 
 # Scripts
 export PATH=${PATH}:~/bin
+
+# Homebrew
+export PATH=/opt/homebrew/bin:${PATH} # needs to be first
+export PATH=${PATH}:/opt/homebrew/sbin
 
 # Sublime
 export PATH="${PATH}:/Applications/Sublime Text.app/Contents/SharedSupport/bin"

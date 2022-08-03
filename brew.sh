@@ -47,4 +47,6 @@ brew install ncdu
 brew install --cask calibre
 brew install --cask via
 
+brew tap homebrew/cask-drivers
+brew install --cask logitech-options
 
