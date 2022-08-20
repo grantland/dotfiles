@@ -50,3 +50,5 @@ brew install --cask via
 brew tap homebrew/cask-drivers
 brew install --cask logitech-options
 
+brew install --cask qmk-toolbox
+brew install --cask duet
