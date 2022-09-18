@@ -41,6 +41,7 @@ brew install --cask vysor
 
 brew install --cask ultimaker-cura
 brew install openscad
+brew install --cask autodesk-fusion360
 
 brew install --cask qlvideo
 brew install ncdu
