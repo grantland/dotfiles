@@ -53,3 +53,5 @@ brew install --cask logitech-options
 
 brew install --cask qmk-toolbox
 brew install --cask duet
+
+brew install fzf
