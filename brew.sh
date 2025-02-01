@@ -23,8 +23,7 @@ brew install --cask syncthing
 brew install --cask google-drive
 
 brew install --cask alfred
-brew install rectangle
-brew install --cask dozer
+brew install jordanbaird-ice
 brew install --cask monitorcontrol
 #brew install unclack
 brew install --cask krisp
@@ -39,9 +38,9 @@ brew install --cask android-file-transfer
 brew install scrcpy
 brew install --cask vysor
 
-brew install --cask ultimaker-cura
-brew install openscad
+brew install --cask orcaslicer
 brew install --cask autodesk-fusion360
+brew install openscad
 
 brew install --cask qlvideo
 brew install ncdu

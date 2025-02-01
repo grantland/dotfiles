@@ -8,6 +8,7 @@ cp inputrc ~/.inputrc
 cp vimrc ~/.vimrc
 cp -r vim/ ~/.vim
 
+mkdir ~/bin
 ln -s $(pwd)/bin/git/contrib/completion/git-completion.bash ~/bin/
 ln -s $(pwd)/bin/git/contrib/completion/git-prompt.sh ~/bin/
 ln -s $(pwd)/bin/git-smartlog/git-smartlog.py ~/bin/
