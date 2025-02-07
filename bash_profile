@@ -75,6 +75,8 @@ fi
 if [ -f /opt/facebook/share/scm-prompt ]; then
   source /opt/facebook/share/scm-prompt
   export PS1='\[\e[1;34m\]\w\[\e[22;35m\]$(_dotfiles_scm_info)\[\e[33m\] \$ \[\e[0m\]'
+else
+  export PS1='\[\e[34;1m\]\w\[\e[0;33m\] \$ \[\e[0m\]'
 fi
 
 # fzf shell integration
