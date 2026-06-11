@@ -103,7 +103,9 @@ _vcs_git_segment() {
     elif [ -f "$root/.git/BISECT_LOG" ];        then op="|BISECT"
     fi
   fi
-  printf " (%s%s%s%s%s%s)" "$branch" "$up" "$staged" "$unstaged" "$untracked" "$op"
+  # Match git's __git_ps1 convention: one space between branch and status flags.
+  local flags="${up}${staged}${unstaged}${untracked}"
+  printf " (%s%s%s)" "$branch" "${flags:+ $flags}" "$op"
 }
 
 # Walk up to find repo type without spawning processes, then render the segment.
