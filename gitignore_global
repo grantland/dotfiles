@@ -36,3 +36,5 @@ Thumbs.db
 # Eclipse #
 ###########
 .metadata
+# Antigravity CLI
+.antigravity*

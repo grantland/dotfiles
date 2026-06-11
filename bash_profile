@@ -138,6 +138,18 @@ export CLICOLOR=1
 # Claude Code
 export CLAUDE_CODE_NO_FLICKER=1
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+
+# Added by Antigravity
+export PATH="/Users/grantland/.antigravity/antigravity/bin:$PATH"
+. "$HOME/.cargo/env"
+
+# Added by Antigravity IDE
+export PATH="/Users/grantland/.antigravity-ide/antigravity-ide/bin:$PATH"
+
 # --- cmux shell integration (load last so it composes onto the final prompt) ---
 # Sourced directly instead of relying on cmux's exported PROMPT_COMMAND bootstrap,
 # which this profile overwrites (line ~40) and bash-git-prompt re-wraps. Loading it
