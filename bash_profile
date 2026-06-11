@@ -99,13 +99,18 @@ export PATH=${PATH}:~/bin
 # Sublime
 export PATH="${PATH}:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 
-# Android SDK
-export ANDROID_HOME=~/Library/Android/sdk
-if [ ! -d ${ANDROID_HOME} ]; then
+# Android SDK — fb4a path on work machines, Android Studio path on personal
+if [ -d /opt/android_sdk ]; then
+  export ANDROID_SDK=/opt/android_sdk
+  export ANDROID_HOME=${ANDROID_SDK}
+elif [ -d ~/Library/Android/sdk ]; then
+  export ANDROID_HOME=~/Library/Android/sdk
+else
   export ANDROID_HOME=/usr/local/opt/android-sdk
 fi
 export PATH=${PATH}:${ANDROID_HOME}/emulator
 export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/tools/bin
 export PATH=${PATH}:${ANDROID_HOME}/tools/proguard/bin
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
@@ -130,3 +135,22 @@ export PATH=${PATH}:/opt/cisco/anyconnect/bin
 export CLICOLOR=1
 # export LSCOLORS="GxFxCxDxBxegedabagacad"
 
+# Claude Code
+export CLAUDE_CODE_NO_FLICKER=1
+
+# --- cmux shell integration (load last so it composes onto the final prompt) ---
+# Sourced directly instead of relying on cmux's exported PROMPT_COMMAND bootstrap,
+# which this profile overwrites (line ~40) and bash-git-prompt re-wraps. Loading it
+# here restores: new-tab/window cwd inheritance, scrollback restore on relaunch, and
+# shell-state reporting. It composes (PROMPT_COMMAND="_cmux_prompt_command;$PROMPT_COMMAND"),
+# preserving bash-git-prompt + your title/history hooks.
+if [ -n "${CMUX_SHELL_INTEGRATION_DIR:-}" ] && [ -r "${CMUX_SHELL_INTEGRATION_DIR}/cmux-bash-integration.bash" ]; then
+    source "${CMUX_SHELL_INTEGRATION_DIR}/cmux-bash-integration.bash"
+fi
+
+# Machine-local overrides (persistent per-machine config; not overwritten by restore)
+[ -f ~/.bash_profile.local ] && source ~/.bash_profile.local
+
+# Work setup scripts (e.g. setup_fb4a.sh) append below this line.
+# The `backup` script truncates here so those appends never reach the repo.
+# ===== END MANAGED DOTFILES =====

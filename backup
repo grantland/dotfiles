@@ -1,7 +1,8 @@
 #!/bin/bash
 # Script to backup dotfiles
 
-cp ~/.bash_profile bash_profile
+# Copy only the managed portion; drop anything work scripts appended past the sentinel
+sed '/^# ===== END MANAGED DOTFILES =====$/q' ~/.bash_profile > bash_profile
 cp ~/.gitignore_global gitignore_global
 cp ~/.gitconfig gitconfig
 cp ~/.inputrc inputrc
