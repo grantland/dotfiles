@@ -76,7 +76,7 @@ fi
 
 # git segment: branch[↑ahead↓behind][+staged][*unstaged][%untracked][|OP]
 _vcs_git_segment() {
-  local root="$1" line branch="" ab="" staged="" unstaged="" untracked="" xy a b up="" op=""
+  local root="$1" line branch="" ab="" staged="" unstaged="" untracked="" xy a b up="" op="" stash=""
   while IFS= read -r line; do
     case "$line" in
       "# branch.head "*) branch="${line#\# branch.head }" ;;
@@ -95,8 +95,9 @@ _vcs_git_segment() {
     [ "$a" != "+0" ] && up="${up}↑${a#+}"
     [ "$b" != "-0" ] && up="${up}↓${b#-}"
   fi
-  # In-progress operation — cheap file checks, no subprocess (only for real .git dirs)
+  # Stash + in-progress operation — cheap file checks, no subprocess (real .git dirs only)
   if [ -d "$root/.git" ]; then
+    [ -f "$root/.git/refs/stash" ] && stash="\$"
     if   [ -d "$root/.git/rebase-merge" ] || [ -d "$root/.git/rebase-apply" ]; then op="|REBASE"
     elif [ -f "$root/.git/MERGE_HEAD" ];        then op="|MERGE"
     elif [ -f "$root/.git/CHERRY_PICK_HEAD" ];  then op="|CHERRY"
@@ -104,7 +105,7 @@ _vcs_git_segment() {
     fi
   fi
   # Match git's __git_ps1 convention: one space between branch and status flags.
-  local flags="${up}${staged}${unstaged}${untracked}"
+  local flags="${up}${staged}${unstaged}${stash}${untracked}"
   printf " (%s%s%s)" "$branch" "${flags:+ $flags}" "$op"
 }
 
