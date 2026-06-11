@@ -46,21 +46,12 @@ cd_stt() {
 }
 alias cd='cd_stt'
 
+# Cache brew prefix once — `brew --prefix` spawns Ruby (~290ms) per call.
+BREW_PREFIX=$(brew --prefix 2>/dev/null)
+
 # Brew git Bash shell command completion
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
-
-# From github.com/magicmonty/bash-git-prompt
-if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-    __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
-
-    # Customizations
-    GIT_PROMPT_ONLY_IN_REPO=1
-    GIT_PROMPT_START='\[\e[1;34m\]\w\[\e[22;35m\]'
-    GIT_PROMPT_END='\[\e[33m\] \$ \[\e[0m\]'
-
-    source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+if [ -f "$BREW_PREFIX/etc/bash_completion" ]; then
+    . "$BREW_PREFIX/etc/bash_completion"
 fi
 
 # From github.com/git/git
@@ -72,15 +63,75 @@ if [ -f /opt/facebook/share/bash_completion ]; then
     source /opt/facebook/share/bash_completion
 fi
 
-if [ -f /opt/facebook/share/scm-prompt ]; then
-  source /opt/facebook/share/scm-prompt
-  export PS1='\[\e[1;34m\]\w\[\e[22;35m\]$(_dotfiles_scm_info)\[\e[33m\] \$ \[\e[0m\]'
-else
-  export PS1='\[\e[34;1m\]\w\[\e[0;33m\] \$ \[\e[0m\]'
-fi
+# ==============================================================================
+# VCS-aware prompt — identical look on Mac, home Linux, and work devservers.
+#   - git repos (Mac + home): fast single-call status via porcelain=v2
+#   - Sapling/Mercurial (fbsource on devservers): delegated to scm-prompt
+# Reads .git/HEAD-style state directly and makes at most ONE `git` subprocess,
+# so it stays ~100ms/prompt instead of bash-git-prompt's ~925ms. See git log.
+# ==============================================================================
 
-# fzf shell integration
-eval "$(fzf --bash)"
+# scm-prompt provides _dotfiles_scm_info for hg/sl repos; load it if present.
+[ -f /opt/facebook/share/scm-prompt ] && source /opt/facebook/share/scm-prompt
+
+# git segment: branch[↑ahead↓behind][+staged][*unstaged][%untracked][|OP]
+_vcs_git_segment() {
+  local root="$1" line branch="" ab="" staged="" unstaged="" untracked="" xy a b up="" op=""
+  while IFS= read -r line; do
+    case "$line" in
+      "# branch.head "*) branch="${line#\# branch.head }" ;;
+      "# branch.ab "*)   ab="${line#\# branch.ab }" ;;
+      "1 "*|"2 "*) xy="${line:2:2}"
+                   [ "${xy:0:1}" != "." ] && staged="+"
+                   [ "${xy:1:1}" != "." ] && unstaged="*" ;;
+      "u "*) staged="+"; unstaged="*" ;;
+      "? "*) untracked="%" ;;
+    esac
+  done < <(git status --porcelain=v2 --branch 2>/dev/null)
+  [ "$branch" = "(detached)" ] && branch="$(git rev-parse --short HEAD 2>/dev/null)"
+  [ -z "$branch" ] && return
+  if [ -n "$ab" ]; then
+    a="${ab%% *}"; b="${ab##* }"
+    [ "$a" != "+0" ] && up="${up}↑${a#+}"
+    [ "$b" != "-0" ] && up="${up}↓${b#-}"
+  fi
+  # In-progress operation — cheap file checks, no subprocess (only for real .git dirs)
+  if [ -d "$root/.git" ]; then
+    if   [ -d "$root/.git/rebase-merge" ] || [ -d "$root/.git/rebase-apply" ]; then op="|REBASE"
+    elif [ -f "$root/.git/MERGE_HEAD" ];        then op="|MERGE"
+    elif [ -f "$root/.git/CHERRY_PICK_HEAD" ];  then op="|CHERRY"
+    elif [ -f "$root/.git/BISECT_LOG" ];        then op="|BISECT"
+    fi
+  fi
+  printf " (%s%s%s%s%s%s)" "$branch" "$up" "$staged" "$unstaged" "$untracked" "$op"
+}
+
+# Walk up to find repo type without spawning processes, then render the segment.
+_vcs_prompt() {
+  local d="$PWD"
+  while :; do
+    if [ -e "$d/.git" ];                        then _vcs_git_segment "$d"; return; fi
+    if [ -d "$d/.hg" ] || [ -d "$d/.sl" ];      then break; fi
+    [ "$d" = "/" ] || [ -z "$d" ] && break
+    d="${d%/*}"
+  done
+  # Sapling/Mercurial fallback (devservers): scm-prompt already returns " (name)".
+  if declare -F _dotfiles_scm_info >/dev/null 2>&1; then
+    _dotfiles_scm_info
+  fi
+}
+
+export PS1='\[\e[1;34m\]\w\[\e[22;35m\]$(_vcs_prompt)\[\e[33m\] \$ \[\e[0m\]'
+
+# fzf shell integration (cached — `fzf --bash` spawns fzf each startup, ~650ms)
+if command -v fzf >/dev/null; then
+  _fzf_cache="$HOME/.cache/fzf-bash-init.bash"
+  if [ ! -f "$_fzf_cache" ] || [ "$(command -v fzf)" -nt "$_fzf_cache" ]; then
+    mkdir -p "$(dirname "$_fzf_cache")"
+    fzf --bash > "$_fzf_cache" 2>/dev/null
+  fi
+  source "$_fzf_cache"
+fi
 
 ##==============================================================================
 # Variables
