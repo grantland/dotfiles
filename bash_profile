@@ -141,11 +141,11 @@ export CLAUDE_CODE_NO_FLICKER=1
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - bash)"
+command -v pyenv >/dev/null && eval "$(pyenv init - bash)"
 
 # Added by Antigravity
 export PATH="/Users/grantland/.antigravity/antigravity/bin:$PATH"
-. "$HOME/.cargo/env"
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
 # Added by Antigravity IDE
 export PATH="/Users/grantland/.antigravity-ide/antigravity-ide/bin:$PATH"
